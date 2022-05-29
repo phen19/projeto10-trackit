@@ -169,13 +169,15 @@ const body ={
 
 }
 
+
+
 const Title = styled.div `  
                                width: 100vw;
                                 heigth: 70px;
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: center;
-                                margin-top:28px;
+                                margin-top:98px;
                                 padding: 0px 18px;
                                 box-sizing: border-box;
                                 font-family: "Lexend Deca", sans serif;
@@ -215,6 +217,7 @@ const Create = styled.form`
                         box-sizing: border-box;
                         margin-top:20px;
                         padding-top:18px;
+                        border-radius: 4px;
                         display: ${props => props.show ? "block;" : "none;" }
                         input{
                             width: 302px;

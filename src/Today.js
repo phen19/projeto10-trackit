@@ -106,7 +106,7 @@ export default Today;
 
 const Content = styled.div`
     width: 340px;
-    margin-top: 28px;
+    margin-top: 98px;
     padding: 0px 18px;
     h1 {
         font-size: 23px;

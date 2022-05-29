@@ -22,7 +22,7 @@ const Title = styled.div `
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
-                            margin-top:28px;
+                            margin-top:98px;
                             padding: 0px 18px;
                             box-sizing: border-box;
                             font-family: "Lexend Deca", sans serif;

@@ -52,7 +52,7 @@ font-family: "Lexend Deca", sans serif;
     bottom: 0;
     right: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1;
     p {
         font-size: 18px;
         color: #52B6FF;

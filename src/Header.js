@@ -36,6 +36,9 @@ const Top = styled.div `
             padding: 0px 18px;
             box-sizing: border-box;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top:0;
+            left:0;
 
             h1{
                 font-size: 40px;

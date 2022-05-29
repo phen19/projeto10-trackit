@@ -2,30 +2,11 @@ import styled from 'styled-components';
 import "./style.css"
 import Logo from './images/Group 8.png'
 import { Link } from "react-router-dom";
-import { Loader } from  'react-loader-spinner'
-import { useState, useEffect } from 'react';
+import  {ThreeDots}  from  'react-loader-spinner'
+import { useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-function buttonSuccess(email, navigate,password, name, picture) {
-
-    
-    let data = {    
-        email: email,
-        name: name,
-        image: picture,
-        password: password
-                };
-    
-    const requisicaoPost = axios.post(
-      "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",
-      data
-    );
-    requisicaoPost.then(() => {
-      navigate("/");
-    });
-    requisicaoPost.catch((response) => console.log(response));
-}
 
 
 
@@ -35,16 +16,41 @@ function Register(){
     const [name, setName] = useState("")
     const [picture, setPicture] = useState("")
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
+    let loadingAnimation = <ThreeDots color="#FFFFFF" height={45} width={60} />
+
+    function buttonSuccess(email, navigate,password, name, picture) {
+
+        setLoading(true)
+        let data = {    
+            email: email,
+            name: name,
+            image: picture,
+            password: password
+                    };
+        
+        const requisicaoPost = axios.post(
+          "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up",
+          data
+        );
+        requisicaoPost.then(() => {
+          navigate("/");
+        });
+        requisicaoPost.catch((error) => {alert(error.response.data.message)
+        setLoading(false)});
+    }
+    
+
 
     return(
         <>
             <Container onSubmit={(e) => buttonSuccess(email,navigate, password,name,picture,e.preventDefault())}>
                 <img src={Logo} alt="Logo" />
-                <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                <input type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-                <input type="text" placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} required/>
-                <input type="text" placeholder="foto" value={picture} onChange={(e) => setPicture(e.target.value)} required/>
-                <button>Cadastrar</button>
+                <input type="text" disabled={loading ? true : false} placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                <input type="password" disabled={loading ? true : false} placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                <input type="text" disabled={loading ? true : false} placeholder="nome" value={name} onChange={(e) => setName(e.target.value)} required/>
+                <input type="text" disabled={loading ? true : false} placeholder="foto" value={picture} onChange={(e) => setPicture(e.target.value)} required/>
+                <button disabled={loading ? true : false} type = "submit">{loading ? loadingAnimation : 'Cadastrar'}</button>
                 <Link to = "/" >
                     <h1>Já tem uma conta? Faça login!</h1>
                 </Link>
@@ -87,6 +93,9 @@ const Container = styled.form `
                     font-size: 20px;
                     color: #FFFFFF;
                     margin-bottom: 6px;
+                    display:flex;
+                    justify-content: center;
+                    align-items:center;
                 }
 `
 

@@ -1,17 +1,26 @@
 import styled from 'styled-components';
 import "./style.css"
-import teste from './images/Rectangle 14.png'
-
+import UserContext from "./UserContext";
+import { useContext } from 'react';
+import { useLocation } from 'react-router-dom'
 function Header(){
-    return(
+    const { user, setUser } = useContext(UserContext);
+    const {pathname} = useLocation()
+    
+    
+    
+    return (pathname !== '/' && pathname !== '/cadastro') ? (
         <>
         <Top>
             <h1>
                 Trackit
             </h1>
-            <img src={teste} alt="" />
+            <img src={user.image} alt="imagem" />
         </Top>
         </>
+    ) :
+    (
+        <></>
     )
 }
 
@@ -26,11 +35,18 @@ const Top = styled.div `
             align-items: center;
             padding: 0px 18px;
             box-sizing: border-box;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
             h1{
                 font-size: 40px;
                 font-family: "Playball", cursive;
                 color: #FFFFFF
+            }
+
+            img {
+                width: 51px;
+                height: 51px;
+                border-radius: 50%;
             }
 
 `

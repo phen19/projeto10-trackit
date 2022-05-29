@@ -44,10 +44,8 @@ function Habits(){
     function toggleCreate(){
     if(showCreate === true){
         setShowCreate(false)
-        console.log(showCreate)
     }else{
         setShowCreate(true)
-        console.log(loading)
     }
     }
 

@@ -33,8 +33,8 @@ export default function Login(){
             setUser(response.data)
             navigate("/habitos");
         });
-        requisicaoPost.catch((response) => console.log(response));
-        
+        requisicaoPost.catch((error) => {alert(error.response.data.message)
+            setLoading(false)})
     }
 
 
@@ -47,9 +47,9 @@ export default function Login(){
         <>
             <Container onSubmit={(e) => Success(email,navigate, password,user, setUser , e.preventDefault())}>
                 <img src={Logo} alt="Logo" />
-                <input type="text"  placeholder="email" value ={email} onChange={(e) => setEmail(e.target.value)} required/>
-                <input type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                <button type = "submit">{loading ? loadingAnimation : 'Entrar'}</button>
+                <input type="text"  disabled={loading ? true : false} placeholder="email" value ={email} onChange={(e) => setEmail(e.target.value)} required/>
+                <input type="password" disabled={loading ? true : false} placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                <button disabled={loading ? true : false} type = "submit">{loading ? loadingAnimation : 'Entrar'}</button>
                 
                 <Link to = "/cadastro" >
                     <h1>Não tem uma conta? Cadastre-se!</h1>

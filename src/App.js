@@ -7,24 +7,28 @@ import Today from "./Today"
 import History from "./History"
 import Footer from "./Footer"
 import Login from "./Login";
-import Teste from "./Teste";
 import UserContext from "./UserContext";
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
+
 
 
 export default function App() {
-    const [token, setToken] = useState([])
+    const [user, setUser] = useState([])
+    const [todayHabits, setTodayHabits] = useState([])
+
+   
         return (
-            <UserContext.Provider value = {{token, setToken}}>
+            <UserContext.Provider value = {{user, setUser, todayHabits, setTodayHabits}}>
             <BrowserRouter>
+             <Header />
                 <Routes>
                     <Route path ="/" element={<Login />}/>
                     <Route path="/cadastro" element={<Register />}/>
                     <Route path="/habitos" element={<Habits />}/>
                     <Route path="/hoje" element={<Today/>}/>
                     <Route path="/historico" element={<History/>}/>
-                    <Route path="/teste" element={<Teste/>}/>
                 </Routes>
+            <Footer />
             </BrowserRouter>
             </UserContext.Provider>
         );

@@ -312,9 +312,9 @@ const Habit = styled.div`
                               height: 30px;
                               margin-right: 4px;
                               font-size: 20px;
-                              color: var(--input--placeholder);
+                              color: #DBDBDB;
                               border-radius: 5px;
-                              border: 1px solid var(--input--placeholder);
+                              border: 1px solid #DBDBDB;
                               background: #FFFFFF;
                           }
                           button.selected {

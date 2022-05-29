@@ -31,7 +31,7 @@ export default function Login(){
         );
         requisicaoPost.then((response) => {
             setUser(response.data)
-            navigate("/habitos");
+            navigate("/hoje");
         });
         requisicaoPost.catch((error) => {alert(error.response.data.message)
             setLoading(false)})

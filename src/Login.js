@@ -16,10 +16,13 @@ export default function Login(){
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const navigate = useNavigate();
-    const { token, setToken } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
+    const [loading, setLoading] = useState(false)
 
-    function Success(email, navigate, password, token, setToken) {
+    let loadingAnimation = <ThreeDots color="#FFFFFF" height={45} width={60} />
 
+    function Success(email, navigate, password, user, setUser) {
+        setLoading(true)
         let data = { email: email, password: password};
     
         const requisicaoPost = axios.post(
@@ -27,7 +30,7 @@ export default function Login(){
           data
         );
         requisicaoPost.then((response) => {
-            setToken(response.data)
+            setUser(response.data)
             navigate("/habitos");
         });
         requisicaoPost.catch((response) => console.log(response));
@@ -36,17 +39,17 @@ export default function Login(){
 
 
  
-        console.log(token);
+        console.log(user);
       
 
         
     return(
         <>
-            <Container onSubmit={(e) => Success(email,navigate, password,token, setToken , e.preventDefault())}>
+            <Container onSubmit={(e) => Success(email,navigate, password,user, setUser , e.preventDefault())}>
                 <img src={Logo} alt="Logo" />
                 <input type="text"  placeholder="email" value ={email} onChange={(e) => setEmail(e.target.value)} required/>
                 <input type="password" placeholder="senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                <button type = "submit">Entrar</button>
+                <button type = "submit">{loading ? loadingAnimation : 'Entrar'}</button>
                 
                 <Link to = "/cadastro" >
                     <h1>Não tem uma conta? Cadastre-se!</h1>
@@ -69,6 +72,7 @@ export default function Login(){
             width:304px;
             height: 44px;
             margin-bottom: 6px;
+            box-sizing: border-box;
             }
 
             img{
@@ -90,5 +94,9 @@ export default function Login(){
                 font-size: 20px;
                 color: #FFFFFF;
                 margin-bottom: 6px;
+                display:flex;
+                justify-content:center;
+                align-items: center;
             }
+           
 `

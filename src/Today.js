@@ -37,6 +37,13 @@ function Today(){
         const [loading, setLoading] = useState(false) // Sending request to API
         const {id, name, done, currentSequence, highestSequence} = habit //destruturação
 
+        function days(sequence){
+            if (sequence === 1){
+                return "dia"
+            }else{
+                return "dias"
+            }
+        }
         // Check or uncheck habit in API
         function attChecked() {
             setLoading(true)
@@ -64,11 +71,13 @@ function Today(){
 
         let icon = <ion-icon name="checkmark-sharp"></ion-icon>
         let loadingAnimation = <ThreeDots color="#FFFFFF" height={69} width={60} />
+
+        
         return (
             <Habit>
                 <h3>{name}</h3>
-                <p>Sequência Atual: <span className={done ? 'checked' : ''}>{currentSequence} dias</span></p>
-                <p>Seu recorde: <span className={(done &&  currentSequence=== highestSequence) ? 'checked' : ''}>{highestSequence} dias</span></p>
+                <p>Sequência Atual: <span className={done ? 'checked' : ''}>{currentSequence} {days(currentSequence)}</span></p>
+                <p>Seu recorde: <span className={(done) ? 'checked' : ''}>{highestSequence} {days(highestSequence)}</span></p>
                 <button 
                     onClick={attChecked}
                     className={done ? `checked ${loading}` : `${loading}`}

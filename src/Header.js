@@ -4,7 +4,7 @@ import UserContext from "./UserContext";
 import { useContext } from 'react';
 import { useLocation } from 'react-router-dom'
 function Header(){
-    const { user, setUser } = useContext(UserContext);
+    const { user} = useContext(UserContext);
     const {pathname} = useLocation()
     
     

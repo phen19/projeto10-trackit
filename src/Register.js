@@ -64,6 +64,7 @@ const Container = styled.form `
                 display:flex;
                 flex-direction: column;
                 align-items: center;
+                background-color:#FFFFFF;
                
                 height: 100vh;
                 width: 100vw;

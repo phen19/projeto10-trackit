@@ -3,7 +3,7 @@ import "./style.css"
 import Logo from './images/Group 8.png'
 import { Link } from "react-router-dom";
 import  {ThreeDots}  from  'react-loader-spinner'
-import { useState, useEffect, useContext } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import UserContext from "./UserContext";
@@ -37,12 +37,6 @@ export default function Login(){
             setLoading(false)})
     }
 
-
- 
-        console.log(user);
-      
-
-        
     return(
         <>
             <Container onSubmit={(e) => Success(email,navigate, password,user, setUser , e.preventDefault())}>
@@ -64,6 +58,7 @@ export default function Login(){
             display:flex;
             flex-direction: column;
             align-items: center;
+            background-color: #FFFFFF;
            
             height: 100vh;
             width: 100vw;
